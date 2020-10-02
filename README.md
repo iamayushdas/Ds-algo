@@ -1,2 +1,2 @@
 # Ds-algo
-# Remember to add a star
+## Remember to star mark this repository
