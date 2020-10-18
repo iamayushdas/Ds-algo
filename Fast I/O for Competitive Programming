@@ -1,0 +1,61 @@
+In competitive programming, it is important to read input as fast as possible so we save valuable time.
+
+You must have seen various problem statements saying: “Warning: Large I/O data, be careful with certain languages (though most should be OK if the algorithm is well designed)”. Key for such problems is to use Faster I/O techniques.
+
+It is often recommended to use scanf/printf instead of cin/cout for a fast input and output. However, you can still use cin/cout and achieve the same speed as scanf/printf by including the following two lines in your main() function:
+
+    ios_base::sync_with_stdio(false);
+It toggles on or off the synchronization of all the C++ standard streams with their corresponding standard C streams if it is called before the program performs its first input or output operation. Adding ios_base::sync_with_stdio (false); (which is true by default) before any I/O operation avoids this synchronization. It is a static member of function of std::ios_base.
+
+    cin.tie(NULL);
+tie() is a method which simply guarantees the flushing of std::cout before std::cin accepts an input. This is useful for interactive console programs which require the console to be updated constantly but also slows down the program for large I/O. The NULL part just returns a NULL pointer.
+
+
+
+Moreover, you can include the standard template library (STL) with a single include:
+
+    #include <bits/stdc++.h>
+So your template for competitive programming could look like this:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 0;
+}
+ 
+
+It is recommended to use cout << “\n”; instead of cout << endl;. endl is slower because it forces a flushing stream, which is usually unnecessary (See this for details). (You’d need to flush if you were writing, say, an interactive progress bar, but not when writing a million lines of data.) Write ‘\n instead of endl.
+
+We can test our input and output methods on the problem INTEST – Enormous Input Teston SPOJ. Before further reading, I would suggest you to solve the problem first.
+
+Solution in C++ 4.9.2
+
+Normal I/O : The code below uses cin and cout. The solution gets accepted with a runtime of 2.17 seconds.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// A normal IO example code 
+#include <bits/stdc++.h> 
+using namespace std; 
+int main() 
+{ 
+    int n, k, t; 
+    int cnt = 0; 
+    cin >> n >> k; 
+    for (int i=0; i<n; i++) 
+    { 
+        cin >> t; 
+        if (t % k == 0) 
+            cnt++; 
+    } 
+    cout << cnt << "\n"; 
+    return 0; 
+} 
+Fast I/O However, we can do better and reduce the runtime a lot by adding two lines. The program below gets accepted with a runtime of 0.41 seconds.
